@@ -263,6 +263,9 @@ samp {
   ;
   unicode-bidi: bidi-override;
 }
+.submit-success, .submit-error {
+  display: none;
+}
 
 pre {
   display: block;
