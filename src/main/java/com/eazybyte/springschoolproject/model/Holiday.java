@@ -1,10 +1,9 @@
 package com.eazybyte.springschoolproject.model;
 
+import lombok.Data;
 import lombok.Getter;
-import lombok.Setter;
 
-import java.lang.reflect.Type;
-@Getter
+@Data
 public class Holiday  {
 
     private final String day;
@@ -15,9 +14,5 @@ public class Holiday  {
         FESTIVAL,FEDERAL
     }
 
-    public Holiday(String day, String reason, Type type) {
-        this.day = day;
-        this.reason = reason;
-        this.type = type;
-    }
+
 }

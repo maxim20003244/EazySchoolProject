@@ -27,7 +27,8 @@ public class ContactController {
 
     @RequestMapping("/contact")
     public String displayContactPAge(){
-        return "contact";
+
+      return "contact";
     }
 /*@RequestMapping(value = "/saveMsg",method = POST)
     public ModelAndView saveMessage(@RequestParam String name, @RequestParam String mobileNum,
