@@ -2,10 +2,14 @@ package com.eazybyte.springschoolproject.controller;
 
 import com.eazybyte.springschoolproject.model.Contact;
 import com.eazybyte.springschoolproject.service.ContactService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,18 +20,17 @@ public class ContactController {
 
     private final ContactService contactService;
 
-
   private static Logger log = LoggerFactory.getLogger(ContactController.class);
 
   @Autowired
     public ContactController(ContactService contactService) {
         this.contactService = contactService;
 
-    }
+  }
 
     @RequestMapping("/contact")
-    public String displayContactPAge(){
-
+    public String displayContactPAge(Model model){
+       model.addAttribute("contact" ,new Contact());
       return "contact";
     }
 /*@RequestMapping(value = "/saveMsg",method = POST)
@@ -41,12 +44,18 @@ public class ContactController {
         return new ModelAndView("redirect:/contact");
     }*/
     @RequestMapping(value = "/saveMsg", method = POST)
-    public ModelAndView saveMessage(Contact contact){
+    public String saveMessage(@Valid @ModelAttribute("contact") Contact contact, Errors errors) {
         contactService.saveMessage(contact);
-        return new ModelAndView("redirect:/contact");
-
+        if(errors.hasErrors()){
+            log.error("Contact form validations failed due to: " + errors.toString());
+            return "contact.html";
+        }
+        return"redirect:/contact" ;
 
     }
+
+
+
 
 
 }
