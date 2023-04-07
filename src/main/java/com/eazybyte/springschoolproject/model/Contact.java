@@ -13,7 +13,7 @@ public class Contact {
     private String name;
 
     @NotBlank(message = "Mobile number must no to be blank")
-@Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
+@Pattern(regexp="(^$|[0-9]{11})",message = "Mobile number must be 11 digits")
     private String mobileNum;
     @NotBlank(message = "Email must no to be blank")
     @Email(message = "Please provide e valid email address")
