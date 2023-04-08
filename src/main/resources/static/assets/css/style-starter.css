@@ -21155,7 +21155,125 @@ h4.inner-text-title {
 }
 
 /* //contact section */
+/* login section */
+.login-block input,
+.login-block textarea {
+  width: 100%;
+  color: var(--heading-color);
+  background: var(--bg-grey);
+  font-size: 16px;
+  padding: 14px;
+  border: 2px solid var(--border-color-light);
+  outline: none;
+  margin-bottom: 20px;
+  border-radius: var(--border-radius);
+}
 
+.log-left.text-center i {
+  color: var(--secondary-color);
+  font-size: 26px;
+}
+
+.login-block textarea {
+  height: 180px;
+  margin: 0 0 20px 0;
+}
+
+.login-block input:focus,
+.login-block textarea:focus {
+  border: 2px solid var(--secondary-color);
+  background: var(--bg-color);
+}
+
+.login-left {
+  box-shadow: var(--box-shadow);
+  padding: 40px;
+}
+
+.login-center {
+  float: none;
+  margin: auto;
+}
+
+.log-details p a:hover {
+  color: var(--secondary-color);
+}
+
+.log-details h6 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 18px;
+  margin-bottom: 8px;
+}
+
+.new-user {
+  color: var(--secondary-color);
+  margin-left: 40%;
+}
+
+/* //login section */
+
+/* team block */
+.w3l-team-13 .left-side h4 {
+  font-size: 22px;
+  line-height: 32px;
+  margin-top: 15px;
+  font-weight: bold;
+  transition: .3s;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -ms-transition: .3s;
+  -o-transition: .3s;
+}
+
+.image-one:hover h4 {
+  color: var(--secondary-color);
+  transition: .3s;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -ms-transition: .3s;
+  -o-transition: .3s;
+}
+
+.w3l-team-13 img {
+  transition: .3s;
+  background: var(--bg-grey);
+  border-radius: 8px 8px 0 0;
+}
+
+.w3l-team-13 img:hover {
+  transition: .3s;
+  background: var(--secondary-color);
+}
+
+.w3l-team-13 .image-one {
+  box-shadow: var(--box-shadow);
+  padding-bottom: 15px;
+}
+
+.w3l-team-13 .buttons-teams2 a i {
+  font-size: 24px;
+  margin: 0 3px;
+}
+
+.w3l-team-13 .buttons-teams2 a .fa-facebook-square {
+  color: #3b5998;
+}
+
+.w3l-team-13 .buttons-teams2 a .fa-twitter-square {
+  color: #00acee;
+}
+
+.w3l-team-13 .buttons-teams2 a .fa-google-plus-square {
+  color: #DD4B39;
+}
+
+@media (max-width: 480px) {
+  .w3l-team-13 .left-side h4 {
+    font-size: 18px;
+    line-height: 25px;
+  }
+}
 /* team block */
 .w3l-team-13 .left-side h4 {
   font-size: 22px;
