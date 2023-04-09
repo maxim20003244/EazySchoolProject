@@ -1,12 +1,17 @@
 package com.eazybyte.springschoolproject.service;
 
+import com.eazybyte.springschoolproject.constans.EazySchoolConstants;
 import com.eazybyte.springschoolproject.model.Contact;
+import com.eazybyte.springschoolproject.repository.ContactRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.ApplicationScope;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
+
+import java.time.LocalDateTime;
 
 @Service
 @Slf4j
@@ -14,8 +19,8 @@ import org.springframework.web.context.annotation.SessionScope;
 //@SessionScope
 //@ApplicationScope
 public class ContactService {
-
-    private int counter = 0;
+    @Autowired
+    private ContactRepository contactRepository;
 
     public ContactService() {
         System.out.println("Contact bean initialized!");
@@ -23,8 +28,14 @@ public class ContactService {
     }
 
     public boolean saveMessage(Contact contact){
-        boolean isSaved = true;
-        log.info(contact.toString());
+        boolean isSaved = false;
+        contact.setStatus(EazySchoolConstants.OPEN);
+        contact.setCreateBY(EazySchoolConstants.ANONYMOUS);
+        contact.setCreateAt(LocalDateTime.now());
+        int result = contactRepository.saveContactMessage(contact);
+        if(result>=0){
+            isSaved=true;
+        }
         return isSaved;
     }
     public String saveMessageString (Contact contact){
@@ -33,11 +44,5 @@ public class ContactService {
         return save;
     }
 
-    public int getCounter() {
-        return counter;
-    }
 
-    public void setCounter(int counter) {
-        this.counter = counter;
-    }
 }
