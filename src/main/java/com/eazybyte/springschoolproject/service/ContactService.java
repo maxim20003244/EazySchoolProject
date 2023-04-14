@@ -12,6 +12,7 @@ import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -38,11 +39,19 @@ public class ContactService {
         }
         return isSaved;
     }
-    public String saveMessageString (Contact contact){
-        String save ;
+    public String saveMessageString (Contact contact) {
+        String save;
         save = contact.toString();
         return save;
     }
+        public List<Contact> findMessageWithOpenStatus(){
+            List<Contact> contactMsgs= contactRepository.findMessagesWithStatus(EazySchoolConstants.OPEN);
+            return contactMsgs;
+        }
+        public List<Contact> getAll(){
+        return  contactRepository.findAll();
+        }
+    }
 
 
-}
+

@@ -30,7 +30,7 @@ public class LoginController {
        model.addAttribute("errorMessage", errorMessage);
         return "login.html";
     }
-    @RequestMapping(value = "/logout",method = RequestMethod.POST)
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpServletResponse response){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication!= null){

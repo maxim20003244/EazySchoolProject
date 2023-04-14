@@ -10,14 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class DashboardController {
     @RequestMapping("/dashboard")
-
     public String displayDashboard(Model model,Authentication authentication){
         model.addAttribute("username",authentication.getName());
         model.addAttribute("roles",authentication.getAuthorities().toString());
-      //  throw  new RuntimeException("Is exception!");
         return "dashboard.html";
-
-
 
     }
 }
