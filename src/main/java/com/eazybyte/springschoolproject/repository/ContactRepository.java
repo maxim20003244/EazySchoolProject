@@ -25,15 +25,15 @@ public class ContactRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
     public int saveContactMessage(Contact contact){
-        String sql = "INSERT INTO contact_msg (NAME,MOBILE_NUM,EMAIL,SUBJECT,MESSAGE,STATUS," +
-                "CREATED_AT,CREATED_BY) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "insert into contact_msg (name,mobile_num,email,subject,message,status," +
+                "created_at,created_by) values (?,?,?,?,?,?,?,?)";
         return jdbcTemplate.update(sql,contact.getName(),contact.getMobileNum(),
                 contact.getEmail(),contact.getSubject(),contact.getMessage(),
                 contact.getStatus(),contact.getCreateAt(),contact.getCreateBY());
     }
 
     public List<Contact> findMessagesWithStatus(String status) {
-        String sql = "SELECT * FROM CONTACT_MSG WHERE 'STATUS' = ?";
+        String sql = "select * from contact_msg where status=? ";
         return jdbcTemplate.query(sql,new PreparedStatementSetter() {
             public void setValues(PreparedStatement preparedStatement) throws SQLException {
                 preparedStatement.setString(1, status);
@@ -41,7 +41,7 @@ public class ContactRepository {
         },new ContactRowMapper());
     }
     public List<Contact> findAll(){
-        return jdbcTemplate.query("select*from contact_msg",new ContactRowMapper());
+        return jdbcTemplate.query("select * from contact_msg ",new ContactRowMapper());
     }
 
 }
