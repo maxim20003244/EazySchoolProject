@@ -1,6 +1,8 @@
 package com.eazybyte.springschoolproject.controller;
 
 import com.eazybyte.springschoolproject.model.Holiday;
+import com.eazybyte.springschoolproject.repository.HolidayRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,8 @@ import java.util.stream.Collectors;
 
 @Controller
 public class HolidayController {
+    @Autowired
+    private HolidayRepository holidayRepository;
 @RequestMapping("/holiday/{display}")
     public String displayHolidays(@PathVariable String display , Model model){
       if(null  != display && display.equals("all")){
@@ -27,16 +31,7 @@ public class HolidayController {
       {
           model.addAttribute("festival",true);
       }
-        List<Holiday> holidays =  Arrays.asList(
-                new Holiday(" Jan 1 ","New Year's Day", Holiday.Type.FESTIVAL),
-                new Holiday(" Oct 31 ","Halloween", Holiday.Type.FESTIVAL),
-                new Holiday(" Nov 24 ","Thanksgiving Day", Holiday.Type.FESTIVAL),
-                new Holiday(" Dec 25 ","Christmas", Holiday.Type.FESTIVAL),
-                new Holiday(" Jan 17 ","Martin Luther King  Day", Holiday.Type.FEDERAL),
-                new Holiday(" July 4 ","Independence Day", Holiday.Type.FEDERAL),
-                new Holiday(" Sep 5 ","Labor Day", Holiday.Type.FEDERAL),
-                new Holiday(" Nov 11 ","Veterans Day", Holiday.Type.FEDERAL)
-        );
+        List<Holiday> holidays =  holidayRepository.findAllHolidays();
         Holiday.Type[] types = Holiday.Type.values();
         for(Holiday.Type  type : types){
             model.addAttribute(type.toString(),
