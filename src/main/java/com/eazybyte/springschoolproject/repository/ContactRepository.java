@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -42,6 +44,20 @@ public class ContactRepository {
     }
     public List<Contact> findAll(){
         return jdbcTemplate.query("select * from contact_msg ",new ContactRowMapper());
+    }
+
+    public int updateMsgStatus (int contactId ,String status, String updateBy){
+        String sql = "update contact_msg set status = ? , updated_by = ?, updated_at = ? where id = ?";
+        return jdbcTemplate.update(sql, new PreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps) throws SQLException {
+                ps.setString(1, status);
+                ps.setString(2, updateBy);
+                ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+                ps.setInt(4, contactId);
+
+            }
+        });
     }
 
 }

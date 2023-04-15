@@ -51,6 +51,15 @@ public class ContactService {
         public List<Contact> getAll(){
         return  contactRepository.findAll();
         }
+
+        public boolean updateMsgStatus(int contactId, String updateBy){
+        boolean isUpdate =false;
+        int result = contactRepository.updateMsgStatus(contactId,EazySchoolConstants.CLOSE, updateBy);
+        if(result>0){
+            isUpdate=true;
+        }
+        return isUpdate;
+        }
     }
 
 
