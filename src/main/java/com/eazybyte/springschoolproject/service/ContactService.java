@@ -49,9 +49,9 @@ public class ContactService {
         return (List<Contact>) contactRepository.findAll();
         }
 
-        public Object findById(int id){
-
-        Object contacts = contactRepository.findById(id);
+        public Contact findById(int contactId){
+            var contact = new Contact();
+            Contact contacts = contactRepository.findById(contactId).get();
         return  contacts;
         }
 

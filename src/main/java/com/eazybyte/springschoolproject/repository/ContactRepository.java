@@ -20,5 +20,4 @@ import java.util.List;
 public interface ContactRepository extends CrudRepository<Contact,Integer> {
     List <Contact> findByStatus (String status);
 
-
 }

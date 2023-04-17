@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -69,8 +70,8 @@ public class ContactController {
         return "redirect:/contact";
     }
     @RequestMapping(value = "/displayMessages" , method = RequestMethod.GET)
-    public ModelAndView displayMessage(Model model){
-        List<Contact> contacts = contactService.findById()
+    public ModelAndView displayMessage( Model model){
+        Contact contacts = contactService.findById(52);
        //log.info(contacts.toString());
         ModelAndView modelAndView = new ModelAndView("messages");
         modelAndView.addObject("contact",contacts);
