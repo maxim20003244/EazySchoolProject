@@ -70,7 +70,7 @@ public class ContactController {
     }
     @RequestMapping(value = "/displayMessages" , method = RequestMethod.GET)
     public ModelAndView displayMessage(Model model){
-        List<Contact> contacts = contactService.findMessageWithOpenStatus();
+        List<Contact> contacts = contactService.findById()
        //log.info(contacts.toString());
         ModelAndView modelAndView = new ModelAndView("messages");
         modelAndView.addObject("contact",contacts);

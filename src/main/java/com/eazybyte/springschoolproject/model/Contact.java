@@ -1,14 +1,21 @@
 package com.eazybyte.springschoolproject.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
 @Data
+@Entity
+@Table(name = "contact_msg")
 public class Contact extends BaseEntity {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO,generator = "native")
+    @GenericGenerator(name = "native",strategy = "native")
+    @Column(name = "id")
     private int contactId;
 
     @NotBlank(message = "Name must no to be blank")
@@ -16,7 +23,7 @@ public class Contact extends BaseEntity {
     private String name;
 
     @NotBlank(message = "Mobile number must no to be blank")
-@Pattern(regexp="(^$|[0-9]{11})",message = "Mobile number must be 11 digits")
+    @Pattern(regexp="(^$|[0-9]{11})",message = "Mobile number must be 11 digits")
     private String mobileNum;
     @NotBlank(message = "Email must no to be blank")
     @Email(message = "Please provide e valid email address")

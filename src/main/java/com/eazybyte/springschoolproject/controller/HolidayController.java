@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
-
+import java.util.stream.StreamSupport;
 
 
 @Controller
@@ -31,11 +32,12 @@ public class HolidayController {
       {
           model.addAttribute("festival",true);
       }
-        List<Holiday> holidays =  holidayRepository.findAllHolidays();
+       Iterable<Holiday>holidays =  holidayRepository.findAll();
+      List<Holiday> holidaysList = StreamSupport.stream(holidays.spliterator(),false).collect(Collectors.toList());
         Holiday.Type[] types = Holiday.Type.values();
         for(Holiday.Type  type : types){
             model.addAttribute(type.toString(),
-                    holidays.stream().filter(holiday -> holiday.getType().equals(type)).collect(Collectors.toList()));
+                    holidaysList.stream().filter(holiday -> holiday.getType().equals(type)).collect(Collectors.toList()));
         }
         return "holiday";
     }
