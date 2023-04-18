@@ -36,7 +36,6 @@ public class ProjectSecurityConfig  {
                 .and().formLogin().loginPage("/login")
                        .defaultSuccessUrl("/dashboard").failureUrl("/login?error=true").permitAll()
                 .and().logout().logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).permitAll()
-
                 .and().httpBasic();
         httpSecurity.headers().frameOptions().disable();
         return httpSecurity.build();

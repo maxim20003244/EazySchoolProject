@@ -2,7 +2,6 @@ package com.eazybyte.springschoolproject.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 import org.hibernate.annotations.GenericGenerator;
 
 @Data
