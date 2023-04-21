@@ -15,12 +15,13 @@ public class ProjectSecurityConfig  {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().ignoringRequestMatchers("/saveMsg").ignoringRequestMatchers(PathRequest.toH2Console()).and().
+        httpSecurity.csrf().ignoringRequestMatchers("/saveMsg").ignoringRequestMatchers("/public/**")
+                .ignoringRequestMatchers(PathRequest.toH2Console()).and().
                 authorizeHttpRequests()
                 .requestMatchers("/dashboard").authenticated()
+                .requestMatchers("/public/**").permitAll()
                 .requestMatchers("/displayMessages").hasRole("ADMIN")
                 .requestMatchers("/display").hasRole("ADMIN")
-                .requestMatchers("/closeMsg/**").hasRole("ADMIN")
                 .requestMatchers("/closeMsg/**").hasRole("ADMIN")
                 .requestMatchers("/", "/home").permitAll()
                 .requestMatchers("/holiday/**").permitAll()
