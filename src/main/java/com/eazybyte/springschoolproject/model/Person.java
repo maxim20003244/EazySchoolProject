@@ -25,7 +25,7 @@ import javax.management.relation.Role;
                 message = "Email addresses do not match!"
         )
 })
-public class Person {
+public class Person extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO,generator="native")
