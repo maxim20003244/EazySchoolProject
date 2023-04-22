@@ -6,3 +6,4 @@ For now need to fix this issues
 The issues was fixed , the PasswordValidation.class for default is was perfom by compile time. 
 But now is change this just add anotation @Retention(RetentionPolicy.RUNTIME) in my class, and this is mean  that my class will be perfom at compile time
 
+I want to save the details which user is insert in registration form in to dataBase. And I'm creating 3 new table inside to dataBase. ('person', 'addres','roles'). In table 'person' I'm making foreign kei with role_id  from role table , and with 'address' table the same . If in the future I want to identify what is particular role user have i can make this easy.
