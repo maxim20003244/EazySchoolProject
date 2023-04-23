@@ -23,20 +23,17 @@ public class PublicController {
         model.addAttribute("person", new Person());
         return "register";
     }
-    @RequestMapping(value = "/createUser",method = RequestMethod.POST)
-    public String createUser(@Valid @ModelAttribute("person")Person person, Errors errors){
-       if(errors.hasErrors()){
-           return "register";
-       }
-       return "redirect:/login?register=true";
-    }
-    @RequestMapping(value = "/saveMessages", method = RequestMethod.POST)
-    public  String savePerson (@Valid @ModelAttribute("person") Person person,Errors errors){
+    @RequestMapping(value ="/createUser",method = { RequestMethod.POST})
+    public String createUser(@Valid @ModelAttribute("person") Person person, Errors errors) {
         if(errors.hasErrors()){
-            log.error("Contact form validations failed due to: " + errors.toString());
-            return "register";
+            return "register.html";
         }
-        personService.saveMessage(person);
-        return "redirect:/login?register=true";
+        boolean isSaved = personService.createNewPerson(person);
+        if(isSaved){
+            return "redirect:/login?register=true";
+        }else {
+            return "register.html";
+        }
     }
+
 }

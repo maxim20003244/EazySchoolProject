@@ -60,7 +60,7 @@ public class ContactService {
             contact1.setStatus(EazySchoolConstants.CLOSE);
         });
         Contact updateContact = contactRepository.save(contact.get());
-        if(null!= updateContact && updateContact.getUpdateBy()!=null){
+        if(null!= updateContact && updateContact.getUpdatedBy()!=null){
             isUpdate = true;
         }
         return isUpdate;
