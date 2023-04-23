@@ -11,7 +11,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class ProjectSecurityConfig  {
+public class ProjectSecurityConfig {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -35,28 +35,11 @@ public class ProjectSecurityConfig  {
                 .requestMatchers("/error").permitAll()
                 .requestMatchers("/assets/**").permitAll()
                 .and().formLogin().loginPage("/login")
-                       .defaultSuccessUrl("/dashboard").failureUrl("/login?error=true").permitAll()
+                .defaultSuccessUrl("/dashboard").failureUrl("/login?error=true").permitAll()
                 .and().logout().logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).permitAll()
                 .and().httpBasic();
         httpSecurity.headers().frameOptions().disable();
         return httpSecurity.build();
     }
-
-@Bean
-        public InMemoryUserDetailsManager userDetailsService(){
-            UserDetails admin = User.withDefaultPasswordEncoder()
-                    .username("user")
-                    .password("12345")
-                    .roles("USER")
-                    .build();
-
-            UserDetails user = User.withDefaultPasswordEncoder()
-                    .username("admin")
-                    .password("54321")
-                    .roles("ADMIN")
-                    .build();
-            return new InMemoryUserDetailsManager(user,admin);
-
-        }
 
 }

@@ -8,4 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PersonRepository extends CrudRepository<Person,String> {
+    Person readByEmail(String email);
 }
