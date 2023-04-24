@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -19,13 +20,18 @@ import java.util.List;
 public class EazySchollUserNameAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private PersonRepository personRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String email = authentication.getName();
         String pwd = authentication.getCredentials().toString();
         Person person = personRepository.readByEmail(email);
-        if(null!= person && person.getPersonId()>0 && pwd.equals(person.getPwd())){
-            return new UsernamePasswordAuthenticationToken(person.getName(), pwd, getGrantedAuthorities(person.getRoles()));
+        if(null!= person && person.getPersonId()>0 && passwordEncoder.matches(pwd,person.getPwd())){
+            return new UsernamePasswordAuthenticationToken(
+                     person.getName(),
+                    null,
+                     getGrantedAuthorities(person.getRoles()));
         }
         return null;
     }
