@@ -3,6 +3,7 @@ package com.eazybyte.springschoolproject.security;
 import com.eazybyte.springschoolproject.model.Person;
 import com.eazybyte.springschoolproject.model.Roles;
 import com.eazybyte.springschoolproject.repository.PersonRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,7 +30,7 @@ public class EazySchollUserNameAuthenticationProvider implements AuthenticationP
         Person person = personRepository.readByEmail(email);
         if(null!= person && person.getPersonId()>0 && passwordEncoder.matches(pwd,person.getPwd())){
             return new UsernamePasswordAuthenticationToken(
-                     person.getName(),
+                    email,
                     null,
                      getGrantedAuthorities(person.getRoles()));
         }

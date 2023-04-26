@@ -4,7 +4,7 @@ Author URL: http://w3layouts.com
 -->
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-
+<script src="https://kit.fontawesome.com/296c5b9ce5.js" crossorigin="anonymous"></script>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -53,6 +53,22 @@ Author URL: http://w3layouts.com
   <div class="section__content section__content--p30">
     <div class="container-fluid">
       <div class="row m-t-25">
+        <div class="col-sm-6 col-lg-3">
+          <a th:href="@{/display}">
+            <div class="overview-item overview-item--c4">
+              <div class="overview__inner">
+                <div class="overview-box clearfix">
+                  <div class="icon">
+                    <i class="fas fa-id-card"></i>
+                  </div>
+                  <div class="text">
+                    <h2>Profile</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
         <div class="col-sm-6 col-lg-3" sec:authorize="hasRole('ROLE_ADMIN')">
           <a th:href="@{/displayMessages}">
             <div class="overview-item overview-item--c3">

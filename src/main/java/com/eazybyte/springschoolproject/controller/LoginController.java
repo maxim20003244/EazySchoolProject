@@ -2,6 +2,7 @@ package com.eazybyte.springschoolproject.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,7 +31,7 @@ public class LoginController {
         } else if (register!=null) {
            errorMessage = "Yuor registration successeful. Login with registered credentials !!";
         }
-    model.addAttribute("errorMessage", errorMessage);
+
         return "login.html";
     }
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
@@ -39,6 +40,7 @@ public class LoginController {
         if(authentication!= null){
             new SecurityContextLogoutHandler().logout(request,response,authentication);
         }
+
     return "redirect:/login?logout=true";
     }
 
