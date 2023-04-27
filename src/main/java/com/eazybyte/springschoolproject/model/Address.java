@@ -10,7 +10,7 @@ import org.springframework.security.core.parameters.P;
 
 @Data
 @Entity
-public class Address {
+public class Address extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy= "native")
@@ -18,7 +18,6 @@ public class Address {
 
 
     private String address1;
-
 
     private String address2;
     @NotBlank(message = "City must to be not blank")
