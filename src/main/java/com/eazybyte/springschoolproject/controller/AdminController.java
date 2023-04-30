@@ -1,5 +1,6 @@
 package com.eazybyte.springschoolproject.controller;
 
+import com.eazybyte.springschoolproject.model.EazyClass;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ public class AdminController {
 @RequestMapping("/displayClasses")
     public ModelAndView displayClasses(Model model){
         ModelAndView modelAndView = new ModelAndView("classes");
+        modelAndView.addObject("eazyClass", new EazyClass());
         return modelAndView;
 
     }
