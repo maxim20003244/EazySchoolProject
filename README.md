@@ -15,4 +15,7 @@ With helps of AuthenticationProvider I created a custom Authentication where a n
 I creating allready a authetication , and in application.properties  i'm disable a JPA authentication. Beacuse in that time I save all tha passwords in my DB in hashing code. When i try to login in my application the Spring boot data JPA try to compare a field with password with password in DB .And I'm disable a validation for JPA .Beacause in my DM the password is save in hashing code but in my field it is a String .
 
 Creating new table in DB , table (classes). Make a realtionship between tabel 'person' and 'classes'. Configuration entity classes Person and I created new entity 'EazyClasses' for table 'classes'. 
-After that I create new web page Class Details where i can create new classes and save in DB. For now I don't explain any loggic for this.In future need to add new method in AdminController for all this actions. 
+After that I create new web page Class Details where i can create new classes and save in DB. For now I don't explain any loggic for this.In future need to add new method in AdminController for all this actions.
+
+In Classes web page I can create new classes for our students and this all classes will be save in to DB. We also can wiew and delete this classes. In each classes I can add any number of students witch already have registration in our web app. We have action delete students from classes. All this have integrations with data bases. 
+For now I want to create new web page for admin where we can to see how many users we have in our web app.There it well be a small form where it's display a information about our users.
