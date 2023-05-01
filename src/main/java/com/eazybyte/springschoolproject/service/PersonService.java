@@ -37,5 +37,10 @@ public class PersonService   {
         return isSaved;
     }
 
+    public List<Person> findAllUsers(){
+        List<Person> users = personRepository.findAll();
+        return users;
+    }
+
 
 }

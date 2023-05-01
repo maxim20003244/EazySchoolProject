@@ -1,15 +1,17 @@
 package com.eazybyte.springschoolproject.controller;
 
 import com.eazybyte.springschoolproject.model.Contact;
+import com.eazybyte.springschoolproject.model.Person;
+import com.eazybyte.springschoolproject.repository.PersonRepository;
 import com.eazybyte.springschoolproject.service.ContactService;
 
 
+import com.eazybyte.springschoolproject.service.PersonService;
 import com.eazybyte.springschoolproject.service.SendMailService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -29,6 +31,7 @@ public class ContactController {
 
     private final ContactService contactService;
     private final SendMailService service;
+    private final PersonService personService;
 
 
 
@@ -36,12 +39,14 @@ public class ContactController {
   private static Logger log = LoggerFactory.getLogger(ContactController.class);
 
   @Autowired
-    public ContactController(ContactService contactService, SendMailService service) {
+    public ContactController(ContactService contactService, SendMailService service, PersonRepository personRepository, PersonService personRepository1) {
         this.contactService = contactService;
 
 
       this.service = service;
 
+
+      this.personService = personRepository1;
   }
 
     @RequestMapping("/contact")
@@ -75,6 +80,15 @@ public class ContactController {
         modelAndView.addObject("contact",contacts);
         return modelAndView;
     }
+
+    @RequestMapping("/displayUsers")
+  public ModelAndView displayUsers(Model model ){
+      List<Person> users = personService.findAllUsers();
+      ModelAndView modelAndView = new ModelAndView("users");
+      modelAndView.addObject("people", users);
+      return modelAndView;
+  }
+
 @RequestMapping(value = "closeMsg",method = GET)
     public String closeMsg (@RequestParam int id ){
       contactService.updateMsgStatus(id);
