@@ -1,13 +1,16 @@
 package com.eazybyte.springschoolproject.controller;
 
 import com.eazybyte.springschoolproject.model.Contact;
+import com.eazybyte.springschoolproject.model.EazyClass;
 import com.eazybyte.springschoolproject.model.Person;
+import com.eazybyte.springschoolproject.repository.EazyClassRepository;
 import com.eazybyte.springschoolproject.repository.PersonRepository;
 import com.eazybyte.springschoolproject.service.ContactService;
 
 
 import com.eazybyte.springschoolproject.service.PersonService;
 import com.eazybyte.springschoolproject.service.SendMailService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -32,6 +36,8 @@ public class ContactController {
     private final ContactService contactService;
     private final SendMailService service;
     private final PersonService personService;
+    private final PersonRepository personRepository;
+    private final EazyClassRepository eazyClassRepository;
 
 
 
@@ -39,7 +45,7 @@ public class ContactController {
   private static Logger log = LoggerFactory.getLogger(ContactController.class);
 
   @Autowired
-    public ContactController(ContactService contactService, SendMailService service, PersonRepository personRepository, PersonService personRepository1) {
+    public ContactController(ContactService contactService, SendMailService service, PersonRepository personRepository, PersonService personRepository1, PersonRepository personRepository2, EazyClassRepository eazyClassRepository) {
         this.contactService = contactService;
 
 
@@ -47,6 +53,8 @@ public class ContactController {
 
 
       this.personService = personRepository1;
+      this.personRepository = personRepository2;
+      this.eazyClassRepository = eazyClassRepository;
   }
 
     @RequestMapping("/contact")
@@ -89,11 +97,13 @@ public class ContactController {
       return modelAndView;
   }
 
-@RequestMapping(value = "closeMsg",method = GET)
-    public String closeMsg (@RequestParam int id ){
-      contactService.updateMsgStatus(id);
-      return "redirect:/displayMessages";
-    }
+@RequestMapping(value = "/closeMsg",method = GET)
+    public String closeMsg (@RequestParam int id ) {
+    contactService.updateMsgStatus(id);
+    return "redirect:/displayMessages";
+}
+
+
 
 
 

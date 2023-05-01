@@ -1,10 +1,13 @@
 package com.eazybyte.springschoolproject.service;
 
 import com.eazybyte.springschoolproject.constans.EazySchoolConstants;
+import com.eazybyte.springschoolproject.model.EazyClass;
 import com.eazybyte.springschoolproject.model.Person;
 import com.eazybyte.springschoolproject.model.Roles;
+import com.eazybyte.springschoolproject.repository.EazyClassRepository;
 import com.eazybyte.springschoolproject.repository.PersonRepository;
 import com.eazybyte.springschoolproject.repository.RoleRepository;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -13,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonService   {
@@ -22,6 +26,8 @@ public class PersonService   {
     private RoleRepository roleRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private EazyClassRepository eazyClassRepository;
 
 
     public boolean createNewPerson(Person person){
@@ -41,6 +47,7 @@ public class PersonService   {
         List<Person> users = personRepository.findAll();
         return users;
     }
+
 
 
 }
