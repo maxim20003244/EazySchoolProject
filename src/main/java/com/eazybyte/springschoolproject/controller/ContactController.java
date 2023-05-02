@@ -1,6 +1,7 @@
 package com.eazybyte.springschoolproject.controller;
 
 import com.eazybyte.springschoolproject.model.Contact;
+import com.eazybyte.springschoolproject.model.Courses;
 import com.eazybyte.springschoolproject.model.EazyClass;
 import com.eazybyte.springschoolproject.model.Person;
 import com.eazybyte.springschoolproject.repository.EazyClassRepository;
@@ -18,10 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -89,20 +87,29 @@ public class ContactController {
         return modelAndView;
     }
 
+
     @RequestMapping("/displayUsers")
   public ModelAndView displayUsers(Model model ){
-      List<Person> users = personService.findAllUsers();
+      List<Person> usersFind = personRepository.findAll();
       ModelAndView modelAndView = new ModelAndView("users");
-      modelAndView.addObject("people", users);
+      modelAndView.addObject("people", usersFind);
       return modelAndView;
   }
 
+    @GetMapping("/deleteUsers")
+    public ModelAndView deleteStudentFromCourses (Model model , @RequestParam int personId){
+        ModelAndView modelAndView = new ModelAndView("redirect:/displayUsers");
+        if( personId != 2202){
+            personRepository.deleteById(personId);
+          return modelAndView;
+      }
+        return modelAndView;
+    }
 @RequestMapping(value = "/closeMsg",method = GET)
     public String closeMsg (@RequestParam int id ) {
     contactService.updateMsgStatus(id);
     return "redirect:/displayMessages";
 }
-
 
 
 

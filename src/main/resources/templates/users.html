@@ -61,7 +61,7 @@
         <td th:text="${use.name}"></td>
         <td th:text="${use.mobileNumber}"></td>
         <td th:text="${use.email}">
-        <td><a  class="btn btn-style btn-style-3">CLOSE</a></td>
+        <td><a th:href="@{/deleteUsers(personId=${use.personId})}"  class="btn btn-style btn-style-3">DELETE</a></td>
       </tr>
 
       </tr>

@@ -32,7 +32,7 @@ public class PersonService   {
 
     public boolean createNewPerson(Person person){
          boolean isSaved = false;
-        Roles role = roleRepository.getByRoleName(EazySchoolConstants.STUDENT_ROLE);
+        Roles role = roleRepository.getByRoleName(EazySchoolConstants.ADMIN);
         person.setRoles(role);
         person.setPwd(passwordEncoder.encode(person.getPwd()));
         person = personRepository.save(person);
@@ -42,12 +42,6 @@ public class PersonService   {
         }
         return isSaved;
     }
-
-    public List<Person> findAllUsers(){
-        List<Person> users = personRepository.findAll();
-        return users;
-    }
-
 
 
 }
