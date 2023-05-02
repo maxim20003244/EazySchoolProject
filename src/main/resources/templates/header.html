@@ -39,7 +39,7 @@
           <li class="nav-item" sec:authorize="isAuthenticated()">
             <a th:href="@{/logout}" class="nav-link">Logout</a>
           <li class="nav-item" sec:authorize="isAuthenticated()">
-            <h5 th:text="${#authentication.getName()}"> </h5>
+            <h5 th:text="${username}"> </h5>
           </li>
           </li>
         </ul>

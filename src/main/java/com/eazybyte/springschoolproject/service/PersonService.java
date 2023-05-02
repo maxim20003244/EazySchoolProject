@@ -26,13 +26,10 @@ public class PersonService   {
     private RoleRepository roleRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
-    private EazyClassRepository eazyClassRepository;
-
 
     public boolean createNewPerson(Person person){
          boolean isSaved = false;
-        Roles role = roleRepository.getByRoleName(EazySchoolConstants.ADMIN);
+        Roles role = roleRepository.getByRoleName(EazySchoolConstants.STUDENT_ROLE);
         person.setRoles(role);
         person.setPwd(passwordEncoder.encode(person.getPwd()));
         person = personRepository.save(person);
