@@ -8,6 +8,7 @@ import com.eazybyte.springschoolproject.repository.EazyClassRepository;
 import com.eazybyte.springschoolproject.repository.PersonRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -102,7 +103,8 @@ public class AdminController {
 
   @GetMapping("/displayCourses")
   public ModelAndView displayCourse(Model model){
-       List<Courses> courses  = coursesRepository.findAll();
+     //  List<Courses> courses  = coursesRepository.findByOrderByName();
+      List<Courses> courses  = coursesRepository.findAll(Sort.by("name").ascending());
        ModelAndView modelAndView = new ModelAndView("courses_secure");
        modelAndView.addObject("courses", courses);
        modelAndView.addObject("course",new Courses());
