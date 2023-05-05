@@ -22,4 +22,15 @@ public interface ContactRepository extends JpaRepository<Contact,Integer> {
     @Modifying
     @Query("update  Contact c SET c.status=?1 where c.contactId = ?2")
     int updateMessageById(String status,int id);
+
+    Page<Contact> findOpenMsg(@Param("status") String status,Pageable pageable);
+    @Modifying
+    @Transactional
+    int updateMsgStatus (String status, int id);
+    @Query(nativeQuery = true)
+    Page<Contact> findOpenMsgNative(@Param("status") String status , Pageable pageable);
+
+    @Transactional
+    @Modifying
+    int updateMsgStatusNative (String status, int id);
 }
