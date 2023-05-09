@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Data
-@Controller
+@Controller("profileControllerBean")
 public class ProfileController {
     @Autowired
    private PersonRepository personRepository;
