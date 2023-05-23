@@ -22,6 +22,7 @@ public class ProjectSecurityConfig {
                 .ignoringRequestMatchers("/public/**")
                 .ignoringRequestMatchers("/api/**")
                 .ignoringRequestMatchers("/data-api/**")
+                .ignoringRequestMatchers("/eazyschool/actuator/**")
                 .and()
 
                 .authorizeHttpRequests()
@@ -30,6 +31,7 @@ public class ProjectSecurityConfig {
                 .requestMatchers("/courseses/**").authenticated()
                 .requestMatchers("/contacts/**").authenticated()
                 .requestMatchers("/data-api/**").hasRole("ADMIN")
+                .requestMatchers("/eazyschool/actuator/**").hasRole("ADMIN")
                 .requestMatchers("/displayProfile").authenticated()
                 .requestMatchers("/updateProfile").authenticated()
                 .requestMatchers("/public/**").permitAll()
