@@ -12,6 +12,7 @@
 	<artifactId>SpringSchoolProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SpringSchoolProject</name>
+	<packaging>jar</packaging>
 	<description>SpringSchoolProject</description>
 	<properties>
 		<java.version>17</java.version>
