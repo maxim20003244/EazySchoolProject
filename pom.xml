@@ -17,6 +17,8 @@
 	<properties>
 		<java.version>19</java.version>
 		<spring-boot-admin-version>3.0.4</spring-boot-admin-version>
+		<maven.compiler.source>1.9</maven.compiler.source>
+		<maven.compiler.target>1.9</maven.compiler.target>
 	</properties>
 
 	<dependencies>
