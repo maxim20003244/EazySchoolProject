@@ -15,10 +15,10 @@
 	<packaging>jar</packaging>
 	<description>SpringSchoolProject</description>
 	<properties>
-		<java.version>19</java.version>
+		<java.version>17</java.version>
 		<spring-boot-admin-version>3.0.4</spring-boot-admin-version>
-		<maven.compiler.source>19</maven.compiler.source>
-		<maven.compiler.target>19</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 	</properties>
 
 	<dependencies>
