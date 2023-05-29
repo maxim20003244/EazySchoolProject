@@ -49,7 +49,7 @@ Author URL: http://w3layouts.com
                     <li class="alert alert-danger" role="alert"
                         th:each="error : ${#fields.errors('contact.*')}" th:text="${error}" />
                 </ul>
-                <form action="/saveMsg" method="post" class="signin-form" th:object="${contact}">
+                <form action="/sendMessage" method="post" class="signin-form" th:object="${contact}">
                     <div class="input-grids">
                         <div class="row">
                             <div class="col-sm-6">
@@ -71,7 +71,9 @@ Author URL: http://w3layouts.com
                         <textarea th:field="*{message}" id="message" placeholder="Type your message here" ></textarea>
                     </div>
                     <div class="text-start">
-                        <button class="btn btn-style btn-style-3">Send Message</button>
+
+                        <button th:href="@{/sendMessage}" class="btn btn-style btn-style-3">Send Message</button>
+
                     </div>
                 </form>
             </div>

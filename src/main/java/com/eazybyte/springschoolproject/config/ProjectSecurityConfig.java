@@ -19,6 +19,7 @@ public class ProjectSecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf()
                 .ignoringRequestMatchers("/saveMsg")
+                .ignoringRequestMatchers("/sendMessages")
                 .ignoringRequestMatchers("/public/**")
                 .ignoringRequestMatchers("/api/**")
                 .ignoringRequestMatchers("/data-api/**")
@@ -46,6 +47,7 @@ public class ProjectSecurityConfig {
                 .requestMatchers("/holiday/**").permitAll()
                 .requestMatchers("/contact").permitAll()
                 .requestMatchers("/saveMsg").permitAll()
+                .requestMatchers("/sendMessages").permitAll()
                 .requestMatchers("/logout").permitAll()
                 .requestMatchers("/courses").permitAll()
                 .requestMatchers("/about").permitAll()

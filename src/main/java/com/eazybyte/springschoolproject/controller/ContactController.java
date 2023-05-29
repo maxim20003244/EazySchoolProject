@@ -1,9 +1,6 @@
 package com.eazybyte.springschoolproject.controller;
 
-import com.eazybyte.springschoolproject.model.Contact;
-import com.eazybyte.springschoolproject.model.Courses;
-import com.eazybyte.springschoolproject.model.EazyClass;
-import com.eazybyte.springschoolproject.model.Person;
+import com.eazybyte.springschoolproject.model.*;
 import com.eazybyte.springschoolproject.repository.EazyClassRepository;
 import com.eazybyte.springschoolproject.repository.PersonRepository;
 import com.eazybyte.springschoolproject.service.ContactService;
@@ -33,7 +30,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class ContactController {
 
     private final ContactService contactService;
-    private final SendMailService service;
+    private final SendMailService mailService;
     private final PersonService personService;
     private final PersonRepository personRepository;
     private final EazyClassRepository eazyClassRepository;
@@ -48,7 +45,7 @@ public class ContactController {
         this.contactService = contactService;
 
 
-      this.service = service;
+      this.mailService = service;
 
 
       this.personService = personRepository1;
@@ -75,10 +72,10 @@ public class ContactController {
     }
 
 
-    @RequestMapping("/sendMessage")
-    public String sendMail(Contact contact){
-        service.sendNotification(contact);
-        return "redirect:/contact";
+    @RequestMapping(value = "/sendMessages", method = POST)
+    public ModelAndView sendMail (Mail mail)  {
+        mailService.sendNotification(mail);
+        return new ModelAndView("redirect:/home");
     }
     @RequestMapping(value = "/displayMessages/page/{pageNum}" , method = RequestMethod.GET)
     public ModelAndView displayMessage(Model model,

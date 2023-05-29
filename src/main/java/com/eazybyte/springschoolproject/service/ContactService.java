@@ -3,6 +3,7 @@ package com.eazybyte.springschoolproject.service;
 import com.eazybyte.springschoolproject.config.EazySchoolProps;
 import com.eazybyte.springschoolproject.constans.EazySchoolConstants;
 import com.eazybyte.springschoolproject.model.Contact;
+import com.eazybyte.springschoolproject.model.Mail;
 import com.eazybyte.springschoolproject.repository.ContactRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -39,9 +40,9 @@ public class ContactService {
         }
         return isSaved;
     }
-    public String saveMessageString (Contact contact) {
+    public String saveMsg (Mail mail){
         String save;
-        save = contact.toString();
+        save= mail.getMail();
         return save;
     }
     public Page<Contact> findMessageWithOpenStatus(int pageNum , String sortField, String sortDir){
