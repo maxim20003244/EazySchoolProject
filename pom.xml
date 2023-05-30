@@ -12,10 +12,22 @@
 	<artifactId>SpringSchoolProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SpringSchoolProject</name>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>9</source>
+					<target>9</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<packaging>jar</packaging>
 	<description>SpringSchoolProject</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 		<spring-boot-admin-version>3.0.4</spring-boot-admin-version>
 		</properties>
 
