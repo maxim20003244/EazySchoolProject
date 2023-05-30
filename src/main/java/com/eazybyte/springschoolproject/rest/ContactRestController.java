@@ -37,7 +37,7 @@ public class ContactRestController {
   if(null!= contact && null!= contact.getStatus() ){
       return  contactRepository.findByStatus(contact.getStatus());
   }
-  return List.of();
+  return null;
     }
 
     @PostMapping("/saveMsg")
