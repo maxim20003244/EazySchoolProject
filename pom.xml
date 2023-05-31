@@ -8,11 +8,32 @@
 		<version>3.0.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<build>
+		<plugins>
+			<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+			<configuration>
+				<mainClass>com.eazybyte.springschoolproject.EasySchoolApplication</mainClass>
+			</configuration>
+
+			<executions>
+				<execution>
+					<goals>
+						<goal>repackage</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+		</plugins>
+	</build>
+
 	<groupId>com.eazybyte</groupId>
 	<artifactId>SpringSchoolProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SpringSchoolProject</name>
 	<packaging>jar</packaging>
+
 	<description>SpringSchoolProject</description>
 	<properties>
 		<java.version>17</java.version>
@@ -141,12 +162,9 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-
-
-
-
-
 	</dependencies>
+
+
 
 
 
