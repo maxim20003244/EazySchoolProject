@@ -8,7 +8,6 @@ import com.eazybyte.springschoolproject.service.ContactService;
 
 import com.eazybyte.springschoolproject.service.PersonService;
 import com.eazybyte.springschoolproject.service.SendMailService;
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
