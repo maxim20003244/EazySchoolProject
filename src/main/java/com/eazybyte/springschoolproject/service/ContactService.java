@@ -7,7 +7,6 @@ import com.eazybyte.springschoolproject.model.Mail;
 import com.eazybyte.springschoolproject.repository.ContactRepository;
 import lombok.extern.slf4j.Slf4j;
 
-import lombok.var;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
